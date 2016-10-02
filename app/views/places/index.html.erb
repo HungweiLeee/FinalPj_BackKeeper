@@ -1,2 +1,33 @@
 <h1>Places#index</h1>
 <p>Find me in app/views/places/index.html.erb</p>
+
+<div class="row">
+	<div class="col-md-3">
+		<ul class="sidebar-list">
+			<li class="sidebar-item"><%= link_to "Your places", places_path, class: "sidebar-link active"%></li>
+			<li class="sidebar-item"><%= link_to "Your Reservation"%></li>
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Your Places
+			</div>
+			<div class="panel-body">
+				<% @places.each do |place| %>
+				<div class="row">
+					<div class="col-md-2">				
+							<%= image_tag place.photos[0].image.url(:thumb) if place.photos.length >0 %>
+					</div>
+					<div class="col-md-7">
+						<h4><%= place.shop_name %></h4>
+					</div>
+					<div class="col-md-3 right">
+						<%= link_to "Update", edit_place_path(place), class: "btn btn-primary"%>
+					</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -51,7 +51,7 @@ class PlacesController < ApplicationController
         end
       end
 
-      redirect_to edit_place(@place), notice: "Updated!"
+      redirect_to edit_place_path(@place), notice: "Updated!"
     else
       render :edit
     end
