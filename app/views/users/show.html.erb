@@ -1,0 +1,19 @@
+Hi~ <%= @user.nickname %>
+
+<div class="col-md-3">
+	<div class="panel panel-default">
+		<div class="panel-heading">Verification</div>
+			<div class="panel-body">
+				Email <br>
+				Address
+			</div>
+	</div>
+</div>
+
+<div class="col-md-9">
+	<%= @user.nickname %>
+
+	<div class="description row-space-3">
+		<% @user.try(:description)%>
+	</div>
+</div>

@@ -1,0 +1,70 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Create your place to put bags
+	</div>
+
+	<div class="panel-body">
+		<div class="container">
+			<%= form_for @place, :html => {:multipart => true} do |p| %>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label> Shop Name </label>
+								<%= p.text_field :shop_name, placeholder: "What is your shopname?", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label> Allow how manny BIG bags </label>
+								<%= p.text_field :big_bag, placeholder: "How many you wil provide?", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label> Allow how manny small bags </label>
+								<%= p.text_field :small_bag, placeholder: "How many you wil provide?", class: "form-control" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<label> Shop Address </label>
+								<%= p.text_field :address, placeholder: "What is your adress?", class: "form-control" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-10">
+						<div class="form-group">
+							<label> Shop Summary </label>
+								<%= p.text_area :summary, rows: 5, placeholder: "Tell about your place", class: "form-control" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<span class ="btn btn-default btn-file">
+								<i class ="fa fa-cloud-upload fa-lg"></i> Upload Photos
+								<%= file_field_tag "images[]", :type => :file, multiple: true %>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="photo"><%= render 'photos/list'%></div>
+
+				<div class="actions">
+					<%= p.submit "Save", class: "btn btn-primary" %>
+				</div>
+				
+			<% end%>			
+		</div>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails_BagKEEPER</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body style=" padding-top: 70px ">
+
+  <%= render 'shared/navbar' %>
+  <%= render 'shared/message' %>
+  
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  </body>
+</html>
