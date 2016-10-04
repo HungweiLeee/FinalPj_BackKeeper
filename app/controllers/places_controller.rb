@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 
-  before_action :find_place, :only => [:show, :edit, :update]
-  before_action :authenticate_user!, :except => [:show]
+  before_action :find_place, :only => [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index]
 
   def index
     @places = current_user.places
@@ -58,13 +58,16 @@ class PlacesController < ApplicationController
   end
 
   def dstroy
+    if @place.detroy
+      redirect_to places_path, notice: "deleted!"
+    end
   end
 
 
   private 
 
   def place_params
-    params.require(:place).permit(:shop_name, :adress, :summary, :big_bag, :small_bag)
+    params.require(:place).permit(:shop_name, :address, :summary, :big_bag, :small_bag)
   end
 
   def find_place

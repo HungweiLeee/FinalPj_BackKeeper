@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="col-md-3">
+		<ul class="sidebar-list">
+			<li class="sidebar-item"><%= link_to "Your places", places_path, class: "sidebar-link"%></li>
+			<li class="sidebar-item"><%= link_to "Your Reservation", places_path %></li>
+			<li class="sidebar-item"><%= link_to "Your trips", your_trips_path, class: "sidebar-link active"%></li>
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Your Trips
+			</div>
+			<div class="panel-body">
+				<% @trips.each do |trip| %>
+					<div class="row">
+						<div class="col-md-2">				
+								<%= trip.start_time.strftime('%v') %>
+								<%= trip.place.shop_name %>
+						</div>
+						<div class="col-md-6">
+							<%= link_to place_path(trip.place) do %>
+								<%= image_tag trip.place.photos[0].image.url(:thumb) if trip.place.photos.length >0 %>
+								<% end %>
+						</div>
+						
+						<div class="col-md-2">
+							<%= image_tag current_user.gravatar_url %>
+						</div>
+						<div class="col-md-2 right">
+							<h4><%= trip.total %></h4>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

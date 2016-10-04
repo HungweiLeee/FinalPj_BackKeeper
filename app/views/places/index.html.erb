@@ -24,6 +24,7 @@
 					</div>
 					<div class="col-md-3 right">
 						<%= link_to "Update", edit_place_path(place), class: "btn btn-primary"%>
+						<%= link_to "delete", places_path(place), :method => :destroy, class: "btn btn-primary"%>
 					</div>
 				</div>
 				<% end %>

@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-   has_many :places, :dependent => :destroy
+  include Gravtastic
+  gravtastic
+
+  has_many :places, :dependent => :destroy
+
+  has_many :reservations
 
 end
