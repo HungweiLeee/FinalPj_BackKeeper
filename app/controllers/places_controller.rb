@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
 
   def index
-    @places = current_user.places
+    @places = current_user.places.order('created_at DESC')
   end
 
   def show

@@ -1,6 +1,6 @@
 <%= form_for([@place, @place.reservations.new]) do |f| %>
 	
-	<%= f.text_field :start_time %>
+ 	<%= f.text_field :start_time %>
 		<span class="glyphicon glyphicon-time"></span>
   <br>
  
@@ -10,7 +10,9 @@
 
 	<br>
 
-		<%= f.submit "Book now", class: "btn btn-primary"%>
+	<%= f.submit "Book now", class: "btn btn-primary"%>
+
+    
 	
 <% end %>
 
@@ -19,7 +21,11 @@
 	$(function(){
 
 	  $('#reservation_start_time').datetimepicker({
-	  	dateFormat: 'dd-mm-yy'
+	  	format: "dd-MM-yyyy - hh:ii",
+      autoclose: true,
+      todayBtn: true,
+      startDate: "2013-02-14 10:00",
+      minuteStep: 10
 	  });
 
 	  $('#reservation_end_time').datetimepicker({
@@ -29,23 +35,3 @@
 	}); <!--  -->
 
 </script>
-
-<div class="container">
-    <div class="row">
-        <div class='col-sm-2'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-        </script>
-    </div>
-</div>
