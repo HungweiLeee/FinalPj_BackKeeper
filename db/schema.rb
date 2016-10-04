@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004073609) do
+ActiveRecord::Schema.define(version: 20161004160557) do
 
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "place_id"
@@ -42,10 +42,12 @@ ActiveRecord::Schema.define(version: 20161004073609) do
     t.datetime "end_time"
     t.integer  "price"
     t.integer  "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "user_id"
     t.integer  "place_id"
+    t.integer  "big_bags_for_thistime"
+    t.integer  "small_bags_for_thistime"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

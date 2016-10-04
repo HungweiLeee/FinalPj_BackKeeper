@@ -1,34 +1,51 @@
-<%= form_for([@place, @place.reservations.new]) do |f| %>
+<%= form_for([@place, @place.reservations.new]) do |r| %>
 	
- 	<%= f.text_field :start_time %>
-		<span class="glyphicon glyphicon-time"></span>
-  <br>
- 
-	<%= f.text_field :end_time %>
-		<span class="glyphicon glyphicon-time"></span>
-	<%= f.hidden_field :place_id, value: @place.id %>
+	<div class="row date">
+		<div class="col-md-6">
+		<span class="glyphicon glyphicon-calendar"></span>
+			<label>In</label>
+			<%= r.text_field :start_time %>
+			
+		</div>
+	 	
+	 	<div class="col-md-6">
+	 	<span class="glyphicon glyphicon-calendar"></span>
+	 	<label>Out</label>
+			<%= r.text_field :end_time %>	
+		</div>
 
-	<br>
+	</div>
 
-	<%= f.submit "Book now", class: "btn btn-primary"%>
+	<div class="row date">
+		<div class="col-md-6">
+			<label>Big</label>
+			<%= select_tag "qty", options_for_select( 1..@place.big_bag )%>
+		</div>
+	 	
+	 	<div class="col-md-6">
+	 	<label>Small</label>
+			<%= select_tag "qty", options_for_select( 1..@place.small_bag )%>	
+		</div>
 
-    
-	
+	</div>
+
+
+	<%= r.hidden_field :place_id, value: @place.id %>
+
+	<%= r.submit "Book now", class: "btn btn-primary"%>
+
 <% end %>
+
 
 <script>
 
 	$(function(){
 
-	  $('#reservation_start_time').datetimepicker({
-	  	format: "dd-MM-yyyy - hh:ii",
-      autoclose: true,
-      todayBtn: true,
-      startDate: "2013-02-14 10:00",
-      minuteStep: 10
+	  $('#reservation_start_time').datepicker({
+	  	dateFormat: 'dd-mm-yy'
 	  });
 
-	  $('#reservation_end_time').datetimepicker({
+	  $('#reservation_end_time').datepicker({
 	  	dateFormat: 'dd-mm-yy'
 	  });
 
