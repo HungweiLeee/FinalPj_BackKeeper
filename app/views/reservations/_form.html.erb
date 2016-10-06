@@ -2,35 +2,55 @@
 	
 	<div class="row date">
 		<div class="col-md-6">
-		<span class="glyphicon glyphicon-calendar"></span>
+			<span class="glyphicon glyphicon-calendar"></span>
 			<label>In</label>
 			<%= r.text_field :start_time %>
-			
 		</div>
 	 	
 	 	<div class="col-md-6">
-	 	<span class="glyphicon glyphicon-calendar"></span>
-	 	<label>Out</label>
+		 	<span class="glyphicon glyphicon-calendar"></span>
+		 	<label>Out</label>
 			<%= r.text_field :end_time %>	
 		</div>
 
 	</div>
 
-	<div class="row date">
+	<div class="row bag">
 		<div class="col-md-6">
 			<label>Big</label>
-			<%= select_tag "qty", options_for_select( 1..@place.big_bag )%>
+			<%= r.select "big_bags_for_thistime", options_for_select( 1..@place.big_bag )%>
 		</div>
 	 	
 	 	<div class="col-md-6">
 	 	<label>Small</label>
-			<%= select_tag "qty", options_for_select( 1..@place.small_bag )%>	
+			<%= r.select "small_bags_for_thistime", options_for_select( 1..@place.small_bag )%>	
 		</div>
+	</div>
 
+	<div class="total">
+		<label>Total cost</label>
 	</div>
 
 
+
 	<%= r.hidden_field :place_id, value: @place.id %>
+
+	<div class="preview" style="display: none">
+		<h4><span id="message"></span></h4>
+
+		<table class="reservation-table">
+			<tbody>
+				<tr>
+					<td>Days</td>
+					<td><span id="reservation_days"></span></td>
+				</tr>
+				<tr>
+					<td>Total</td>
+					<td><span id="reservation_sum"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
 	<%= r.submit "Book now", class: "btn btn-primary"%>
 
@@ -39,7 +59,10 @@
 
 <script>
 
+	
+
 	$(function(){
+
 
 	  $('#reservation_start_time').datepicker({
 	  	dateFormat: 'dd-mm-yy'
@@ -49,6 +72,6 @@
 	  	dateFormat: 'dd-mm-yy'
 	  });
 
-	}); <!--  -->
+	});
 
 </script>

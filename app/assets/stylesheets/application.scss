@@ -16,7 +16,6 @@
 @import "bootstrap";
 @import "jquery-ui/datepicker";
 @import "toastr";
-@import "jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.css";
 @import "font-awesome";
 
 
@@ -163,4 +162,16 @@ input[type="checkbox"]:checked:before {
 .panel-heading.preview img{  
   width: 100%;
   height: auto;
+}
+
+.row col-md-2 first-pic{
+  
+  height:400px;
+}
+
+.reservation-table td {
+  width: 100%;
+  border: 1px solid #dce0e0;
+  padding: 10px;
+  
 }

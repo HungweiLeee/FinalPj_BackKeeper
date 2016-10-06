@@ -1,6 +1,20 @@
 class ReservationsController < ApplicationController
 
-	before_action :authenticate_user!
+	#before_action :authenticate_user!
+
+  #for ajax datepicker
+  def preload
+    room = Room.find(params[:room_id])
+    today = Date.today
+    reservations = room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+
+    render json: reservations 
+  end
+
+  def index
+    @reservations = Reservation.all
+    render :json => @reservations.to_json
+  end
 
   def create
   	@reservation = current_user.reservations.create(reserv_params)
@@ -21,6 +35,6 @@ class ReservationsController < ApplicationController
 	private
 
 	def reserv_params
-		params.require(:reservation).permit(:start_time, :end_time, :price, :total, :place_id)
+		params.require(:reservation).permit(:start_time, :end_time, :price, :total, :place_id, :big_bags_for_thistime, :small_bags_for_thistime)
 	end
 end

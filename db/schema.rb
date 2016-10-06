@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004160557) do
+ActiveRecord::Schema.define(version: 20161005111621) do
+
+  create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
+    t.index ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.boolean  "read"
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
 
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "place_id"
@@ -48,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161004160557) do
     t.integer  "place_id"
     t.integer  "big_bags_for_thistime"
     t.integer  "small_bags_for_thistime"
+    t.integer  "phone_number"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -67,9 +86,12 @@ ActiveRecord::Schema.define(version: 20161004160557) do
     t.string   "image"
     t.string   "phone_unmber"
     t.text     "description",            limit: 65535
+    t.string   "authentication_token"
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "messages", "users"
   add_foreign_key "photos", "places"
 end

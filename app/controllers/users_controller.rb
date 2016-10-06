@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	def show
 		@user = User.find_by_id(params[:id])
-		#@places = @user.places
+		@places = @user.places
 	end
 end

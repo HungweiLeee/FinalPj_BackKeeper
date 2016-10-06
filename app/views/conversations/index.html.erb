@@ -1,0 +1,49 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panal-heading">Your conversations</div>
+				<div class="panel-body">
+
+						<div class="container">
+							<% @conversations.each do |conversation|%>
+								
+								<% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+	    						<% if conversation.sender_id == current_user.id %>
+	      						<% recipient = User.find(conversation.recipient_id) %>
+	    						<% else %>
+	      						<% recipient = User.find(conversation.sender_id) %>
+	    						<% end %>
+   							<% end %>
+								
+								<%= link_to conversation_messages_path(conversation) do %>
+								
+									<div class="row conversation">
+										<div class="col-md-2">
+											
+										</div>
+
+									<div class="col-md-2">
+										<%= recipient.nickname %>
+										<%= conversation.messages.last.message_time %>
+									</div>
+
+									<div class="col-md-8">
+										<%= conversation.messages.last.content %>
+									</div>
+
+									</div>
+								<% end %>
+							<% end %>
+						</div>
+				</div>
+			</div>
+
+<h3>All Users</h3>
+	<% @users.each do |user| %>
+		<% if user != current_user %>
+			<%= user.nickname %>
+			<%= link_to "Send Message", conversations_path(sender_id: current_user, recipient_id: user.id ), :method => :post%>
+		<% end %>
+	<% end %>
+	</div>
+</div>

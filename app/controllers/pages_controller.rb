@@ -3,5 +3,11 @@ class PagesController < ApplicationController
   end
 
   def index
+  	@places = Place.all
   end
+
+  def show
+  	@palce = Place.find(params[:id])
+  end
+  
 end
