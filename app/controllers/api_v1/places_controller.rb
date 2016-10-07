@@ -1,9 +1,12 @@
-class ApiV1::PlacesController < ApplicationController
-
+class ApiV1::PlacesController < ApiController
+  
+  before_action :authenticate_user!
+  
 	def index
-    @places = Place.all.order("id DESC")
+    #@places = Place.all.order("id DESC")
+    @places = current_user.places.order("id DESC")
 
-    render :json => @places.to_json
+    # render :json => @places.to_json
 
     # result = {}
 

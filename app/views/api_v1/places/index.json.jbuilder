@@ -1,3 +1,6 @@
-json.data @places do |place|
-  json.partial! "show", collection: @places, :as => :place
+json.user do
+	json.email current_user.email
+	json.place current_user.places
 end
+
+

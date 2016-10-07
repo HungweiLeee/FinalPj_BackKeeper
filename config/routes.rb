@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => "/cable"
+
   root 'pages#home'
 
 	devise_for :users
@@ -11,10 +13,11 @@ Rails.application.routes.draw do
     post "/login" => "auth#login"
     post "/logout" => "auth#logout"
     post "/new" => "auth#new"
+    #post "/places" => "places#show"
  
-    resources :places do
-      resources :reservations
-    end
+    resources :places
+    resources :reservations
+    
   end
 
   resources :users, only: [:show]

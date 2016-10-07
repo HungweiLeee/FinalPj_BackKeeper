@@ -23,7 +23,7 @@
 	 	
 	 	<div class="col-md-6">
 	 	<label>Small</label>
-			<%= r.select "small_bags_for_thistime", options_for_select( 1..@place.small_bag )%>	
+			<%= r.select "small_bags_for_thistime", options_for_select( 1..@place.small_bag, class: "select-controll")%>	
 		</div>
 	</div>
 

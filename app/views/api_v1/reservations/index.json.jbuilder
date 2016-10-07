@@ -1,3 +1,3 @@
-json.data @reservations do |reservation|
-  json.partial! "show", collection: @reservations, :as => :reservation
+json.reservation do
+	json.data current_user.reservations
 end

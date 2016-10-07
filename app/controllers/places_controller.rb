@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
 
   before_action :find_place, :only => [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!, :except => [:index]
+  before_action :authenticate_user!, :except => [:index]
 
   def index
     @places = current_user.places.order('created_at DESC')

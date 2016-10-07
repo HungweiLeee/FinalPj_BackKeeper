@@ -12,7 +12,7 @@ class ReservationsController < ApplicationController
   end
 
   def index
-    @reservations = Reservation.all
+    @reservations = current_user.reservations.all
     render :json => @reservations.to_json
   end
 
