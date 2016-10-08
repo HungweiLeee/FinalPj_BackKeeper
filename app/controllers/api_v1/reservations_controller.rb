@@ -1,7 +1,7 @@
 class ApiV1::ReservationsController < ApiController
 
   before_action :authenticate_user_from_token!
-  before_action :find_place, :only => [:index, :show]
+  before_action :find_place, :only => [:index, :show, :edit, :create]
 
 	def index
     #@reservations = current_user.reservations
@@ -9,23 +9,33 @@ class ApiV1::ReservationsController < ApiController
   end
 
   def show
-    @reservation = @reservation.find(params[:id])
+    @reservation = Reservation.find(params[:id])
     render :json => @reservation.to_json
   end
  
   def create
-    @reservation = Reservation.new( :start_time => params[:start_time],
+    @reservation = Reservation.new( 
+                                    :start_time => params[:start_time],
                                     :end_time => params[:end_time],
                                     :big_bags_for_thistime => params[:big_bags_for_thistime],
-                                    :small_bags_for_thistime => params[:small_bags_for_thistime])
+                                    :small_bags_for_thistime => params[:small_bags_for_thistime]                                  
+                                  )
+    @reservation.user = current_user
+    #@reservation.place_id = Reservation.find(params[:id])
  
     render :json => @reservation.to_json
+    
+  end
 
-    if @reservation.save
-    	#render :json => { :message => "OK"}
+  def update
+    @reservation = @reservation.update(reservation_params)
+
+    if @reservtion.save
+      render :json => { :message => "OK"}
     else
-    	#render :json => { :errors => @reservation.errors.full_messages }, :status => 400
+      render :json => { :errors => @reservation.errors.full_messages }, :status => 400
     end
+
   end
 
 
@@ -33,6 +43,10 @@ class ApiV1::ReservationsController < ApiController
 
   def find_place
     @reservations = current_user.reservations
+  end
+
+  def reservation_params
+
   end
 
 end

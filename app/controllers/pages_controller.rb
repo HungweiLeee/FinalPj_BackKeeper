@@ -6,5 +6,9 @@ class PagesController < ApplicationController
   def show
   	@palce = Place.find(params[:id])
   end
+
+  def search
+		
+	end
   
 end
