@@ -6,11 +6,18 @@
 		<!--IMG-->
 		<div class="row">
 			<div class="col-md-12">
+				<% if @photos[0] %>
 				<%= image_tag @photos[0].image.url(), class: "img-responsive"%>
+				<% end %>
 			</div>
 		</div>
 
 		<br>
+
+		<!--<% @shop_reservations.each do |r| %>
+			<%= r.reservation_status.bag_status %>
+		<% end %>-->
+		
 
 		<!--Main-->
 		<div class="row">

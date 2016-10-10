@@ -18,7 +18,7 @@
 								<%= trip.start_time.strftime('%v') %>
 								<%= trip.place.shop_name %>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<%= link_to place_path(trip.place) do %>
 								<%= image_tag trip.place.photos[0].image.url(:thumb) if trip.place.photos.length >0 %>
 								<% end %>
@@ -28,7 +28,11 @@
 							<%= image_tag current_user.gravatar_url %>
 						</div>
 						<div class="col-md-2 right">
-							<h4><%= trip.total %></h4>
+							<h4>trip.total price</h4>
+						</div>
+
+						<div class="col-md-2">
+							<h4><%= link_to "詳細訂單", place_reservation_path(trip.place_id, trip.id)%></h4>
 						</div>
 					</div>
 				<% end %>

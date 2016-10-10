@@ -1,32 +1,40 @@
 <h1>Places#index</h1>
-<p>Find me in app/views/places/index.html.erb</p>
+<p>Find me in app/views/your_places/index.html.erb</p>
+
 
 <div class="row">
 	<div class="col-md-3">
 		<ul class="sidebar-list">
-			<li class="sidebar-item"><%= link_to "Your places", places_path, class: "sidebar-link active"%></li>
-			<li class="sidebar-item"><%= link_to "Your Reservation"%></li>
+			<li class="sidebar-item"><%= link_to "待放"%></li>
+			<li class="sidebar-item"><%= link_to "待取"%></li>
+			<li class="sidebar-item"><%= link_to "已完成訂單"%></li>
+			<li class="sidebar-item"><%= link_to "全部訂單"%></li>
 		</ul>
 	</div>
+
+
 	<div class="col-md-9">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Your Places
+				<!--Place.find('10').reservations.first.reservation_status.bag_status-->
 			</div>
 			<div class="panel-body">
 				<% @places.each do |place| %>
-				<div class="row">
-					<div class="col-md-2">				
-							<%= image_tag place.photos[0].image.url(:thumb) if place.photos.length >0 %>
+					<div class="row">
+						<div class="col-md-2" style=" height:100px">				
+								<%= image_tag place.photos[0].image.url(:thumb) if place.photos.length >0 %>
+						</div>
+						<div class="col-md-6">
+							<h4><%= place.shop_name %></h4>
+						</div>
+						<div class="col-md-4 right">
+							
+							<%= link_to "Show", place_path(place), class: "btn btn-primary"%>
+							<%= link_to "Update", edit_place_path(place), class: "btn btn-primary"%>
+							<%= link_to "delete", place_path(place), :method => :delete, class: "btn btn-primary"%>
+						</div>
 					</div>
-					<div class="col-md-7">
-						<h4><%= place.shop_name %></h4>
-					</div>
-					<div class="col-md-3 right">
-						<%= link_to "Update", edit_place_path(place), class: "btn btn-primary"%>
-						<%= link_to "delete", places_path(place), :method => :destroy, class: "btn btn-primary"%>
-					</div>
-				</div>
 				<% end %>
 			</div>
 		</div>

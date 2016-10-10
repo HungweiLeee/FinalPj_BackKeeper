@@ -13,7 +13,11 @@ class ReservationsController < ApplicationController
 
   def index
     @reservations = current_user.reservations.all
-    render :json => @reservations.to_json
+    
+    #@wait_for_take_reservations = @reservations
+    #@compeleted_reservations = @reservations
+
+    #render :json => @reservations.to_json
   end
 
   def create
@@ -26,6 +30,18 @@ class ReservationsController < ApplicationController
   	redirect_to places_path(@place)
   end
 
+  def edit
+    @place = Place.find(params[:place_id])
+    #@reservation = @place.reservation
+  end
+
+  def update
+    @reservation.update(reserv_params)
+  end
+
+  def show
+    @reservation = current_user.reservations.find(params[:id])
+  end
 
 
   def your_trips

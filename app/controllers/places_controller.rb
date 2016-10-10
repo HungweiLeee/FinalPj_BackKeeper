@@ -5,11 +5,16 @@ class PlacesController < ApplicationController
 
   def index
     @places = current_user.places.order('created_at DESC')
+
+    #@wait_to_place_reservations = 
+    #@wait_to_take_reservations
+    #@completed_reservations
+
   end
 
   def show
-    #@place = current_user.find(:id)
     @photos = @place.photos
+    @shop_reservations = @place.reservations
   end
 
   def new
@@ -57,8 +62,8 @@ class PlacesController < ApplicationController
     end
   end
 
-  def dstroy
-    if @place.detroy
+  def destroy
+    if @place.destroy
       redirect_to places_path, notice: "deleted!"
     end
   end

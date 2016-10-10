@@ -24,10 +24,8 @@
               <%= current_user.nickname %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Your Trips", your_trips_path %></li>
-                <li><a href="#">Your WishList</a></li>
-                <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                <li><%= link_to "Your Places", places_path %></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Account Setting</a></li>
                 <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
               </ul>
             </li>

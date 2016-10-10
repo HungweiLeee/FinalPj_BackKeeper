@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :places
 
   resources :places do
-    resources :reservations, only: [:create]
+    resources :reservations, only: [:create, :edit, :index, :show]
   end
 
   resources :pages

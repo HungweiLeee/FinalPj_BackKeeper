@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008095914) do
+ActiveRecord::Schema.define(version: 20161010030431) do
 
   create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "sender_id"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20161008095914) do
     t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "bag_status"
   end
 
   create_table "reservations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -67,14 +68,26 @@ ActiveRecord::Schema.define(version: 20161008095914) do
     t.datetime "end_time"
     t.integer  "price"
     t.integer  "total"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "user_id"
     t.integer  "place_id"
     t.integer  "big_bags_for_thistime"
     t.integer  "small_bags_for_thistime"
     t.integer  "phone_number"
     t.integer  "reservation_status_id"
+    t.string   "status",                  default: "待寄放"
+  end
+
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
+    t.text     "comment",    limit: 65535
+    t.integer  "star"
+    t.integer  "place_id"
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["place_id"], name: "index_reviews_on_place_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
@@ -102,4 +115,6 @@ ActiveRecord::Schema.define(version: 20161008095914) do
 
   add_foreign_key "messages", "users"
   add_foreign_key "photos", "places"
+  add_foreign_key "reviews", "places"
+  add_foreign_key "reviews", "users"
 end
