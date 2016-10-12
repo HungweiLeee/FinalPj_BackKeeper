@@ -1,0 +1,27 @@
+<% if @reviews.count == 0 %>
+	<div class="text-center"><h4>No reviews, be the first one?</h4></div>
+<% else %>
+	<% @reviews.order("id desc").each do |r| %>
+		<div class="row">
+			
+			<div class="col-md-12">
+				<strong><%= r.user.nickname %> <div id='stars_<%= r.id%>'></div></strong>
+				<span class="pull-right">
+					<%= link_to "Remove the review", [@place, r], :method => :delete if current_user && r.user == current_user %>
+				</span>
+			</div>
+
+			<div><%= r.comment %></div>
+			<div><%= r.created_at.strftime("%v")%></div>
+		</div>
+
+		<script>
+			$('#stars_<%= r.id%>').raty({
+				path: '/assets',
+				readOnly: true,
+				score: <%= r.star %>
+			});
+		</script>
+	<% end %>
+<% end %>
+

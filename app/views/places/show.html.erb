@@ -1,6 +1,3 @@
-<h1>Places#show</h1>
-<p>Find me in app/views/places/show.html.erb</p>
-
 <div class="panel panel-defaut">
 	<div class="panel-body">
 		<!--IMG-->
@@ -13,11 +10,6 @@
 		</div>
 
 		<br>
-
-		<!--<% @shop_reservations.each do |r| %>
-			<%= r.reservation_status.bag_status %>
-		<% end %>-->
-		
 
 		<!--Main-->
 		<div class="row">
@@ -33,8 +25,9 @@
 						<h4><%= @place.shop_name %></h4>
 						<h5><%= @place.address %></h5> 
 
+						<!--
 						<p>Coordinates: <%= @place.latitude %> <%= @place.longitude %></p>
-
+						-->
 						<div class="row text-center row-space-1">
 							<div class="col-md-3">
 								<i class="fa fa-shopping-bag fa-2x"></i>
@@ -67,6 +60,21 @@
 			<div class="col-md-12">
 				<h2>About this Place</h2>
 				<%= @place.summary %>
+			</div>
+		</div>
+
+		<!-- Reviews, if @booked && !@hasReview, <%= @place.average_rating %>-->
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Reviews </h3>
+				<div class="container">
+					<div>
+						<%= render 'reviews/form'%>
+					</div>
+					<div>
+						<%= render 'reviews/list'%>
+					</div>
+				</div>
 			</div>
 		</div>
 

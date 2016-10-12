@@ -7,6 +7,7 @@ class PlacesController < ApplicationController
     @places = current_user.places.order('created_at DESC')
 
     #@wait_to_place_reservations = 
+      #<!--Place.find('10').reservations.first.status-->
     #@wait_to_take_reservations
     #@completed_reservations
 
@@ -14,7 +15,12 @@ class PlacesController < ApplicationController
 
   def show
     @photos = @place.photos
-    @shop_reservations = @place.reservations
+
+    @booked = Reservation.where("place_id = ? AND user_id = ?", @place_id, current_user.id).present? if current_user
+    
+    @reviews = @place.reviews
+    @hasReview = @reviews.find_by(:user_id => current_user.id) if current_user
+    #@shop_reservations = @place.reservations
   end
 
   def new

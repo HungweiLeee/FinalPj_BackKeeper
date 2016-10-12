@@ -1,2 +1,43 @@
+<h2> 訂單明細 </h2>
+
+地點 <%= @reservation.place.shop_name %>
 <%= @reservation.start_time %>
-<%= @reservation.status %>
+<%= @reservation.end_time %>
+<%= @reservation.price %>
+<br>
+
+大件<%= @reservation.big_bags_for_thistime %>
+小件<%= @reservation.small_bags_for_thistime %>
+
+<% seconds_diff = (@reservation.start_time - @reservation.end_time).to_i.abs %>
+<% hr = seconds_diff / 3600 %>
+<br>
+
+預估金額
+<%= (@reservation.big_bags_for_thistime*50+@reservation.small_bags_for_thistime*30)* (hr-2) %>
+
+<%= %>
+<br>
+狀態 <%= @reservation.status %>
+
+<br>
+預估 <%= seconds_diff / 3600 %>小時
+
+<br>
+
+<%= form_for([@place, @reservation]) do |r| %>
+	
+	<div class="row date">
+		<div class="col-md-6">
+			<span class="glyphicon glyphicon-calendar"></span>
+			
+			<%= r.select :status,[["待取","待取"],["完成","完成"]], :class => "form-control" %>
+			<% %>
+		</div>
+	</div>
+
+		<%= r.submit %>
+	 	
+<% end %>
+
+  

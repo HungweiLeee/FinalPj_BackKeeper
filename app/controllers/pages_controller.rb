@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-  	@places = Place.all
+  	@places = Place.all.order("id DESC")
   end
 
   def show

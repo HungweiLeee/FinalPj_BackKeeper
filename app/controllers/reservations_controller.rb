@@ -32,15 +32,17 @@ class ReservationsController < ApplicationController
 
   def edit
     @place = Place.find(params[:place_id])
-    #@reservation = @place.reservation
   end
 
   def update
+    @reservation = @place.reservation
     @reservation.update(reserv_params)
   end
 
   def show
+    @place = Place.find(params[:place_id])
     @reservation = current_user.reservations.find(params[:id])
+
   end
 
 
@@ -51,6 +53,6 @@ class ReservationsController < ApplicationController
 	private
 
 	def reserv_params
-		params.require(:reservation).permit(:start_time, :end_time, :price, :total, :place_id, :big_bags_for_thistime, :small_bags_for_thistime)
+		params.require(:reservation).permit(:status, :start_time, :end_time, :price, :total, :place_id, :big_bags_for_thistime, :small_bags_for_thistime, :start_date, :end_date)
 	end
 end

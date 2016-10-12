@@ -15,15 +15,24 @@ class ApiV1::ReservationsController < ApiController
  
   def create
     @reservation = Reservation.new( 
+                                    :place_id => params[:place_id],
                                     :start_time => params[:start_time],
                                     :end_time => params[:end_time],
                                     :big_bags_for_thistime => params[:big_bags_for_thistime],
                                     :small_bags_for_thistime => params[:small_bags_for_thistime]                                  
                                   )
     @reservation.user = current_user
+    @reservation.place = Place.find_by_shop_name(params[:place])
+    @reservation.save
     #@reservation.place_id = Reservation.find(params[:id])
  
     render :json => @reservation.to_json
+
+    if @reservtion.save
+      render :json => { :message => "OK"}
+    else
+      render :json => { :errors => @reservation.errors.full_messages }, :status => 400
+    end
     
   end
 
