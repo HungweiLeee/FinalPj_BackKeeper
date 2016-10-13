@@ -1,0 +1,32 @@
+<div id="wrapper">
+
+	<div id="sidebar">
+		<div id="widget" class="sticky">
+			
+		</div>
+	</div>
+
+	<div id="article">
+		<div class="row">
+			
+			<div class="row">
+
+				<% @arrPlaces.each do |place| %>
+					
+					<div class="col-md-4">
+						<div class="panel panel-default">
+							<div class="panel-heading preview">
+								<%= image_tag place.photos[0].image.url(:medium) if place.photos.length > 0 %>
+							</div>
+							<div class="panel-body">
+								<%= image_tag place.user.gravatar_url%>&nbsp;
+								<%= link_to place.shop_name, place %>
+							</div>
+						</div>
+					</div>
+				<% end %>
+
+			</div>
+		</div>
+	</div>
+</div>

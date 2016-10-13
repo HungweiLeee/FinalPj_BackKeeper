@@ -4,11 +4,11 @@ class ReservationsController < ApplicationController
 
   #for ajax datepicker
   def preload
-    room = Room.find(params[:room_id])
+    place = Place.find(params[:place_id])
     today = Date.today
-    reservations = room.reservations.where("start_date >= ? OR end_date >= ?", today, today)
+    reservations = place.reservations.where("start_date >= ? OR end_date >= ?", today, today)
 
-    render json: reservations 
+    render :json => reservations 
   end
 
   def index
@@ -35,13 +35,17 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    @reservation = @place.reservation
+    @place = Place.find(params[:place_id])
+    @reservation = @place.reservations.find(params[:id])
     @reservation.update(reserv_params)
+
+    redirect_to places_path
+
   end
 
   def show
     @place = Place.find(params[:place_id])
-    @reservation = current_user.reservations.find(params[:id])
+    @reservation = @place.reservations.find(params[:id])
 
   end
 

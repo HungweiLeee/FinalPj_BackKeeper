@@ -47,6 +47,9 @@ Rails.application.routes.draw do
 
   get '/your_trips' => 'reservations#your_trips'
 
+  get '/search' => 'pages#search'
+  get '/search2' => 'pages#index'
+
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #root :to => "welcome#index"

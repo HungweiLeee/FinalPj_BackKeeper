@@ -27,12 +27,6 @@ class ApiV1::ReservationsController < ApiController
     #@reservation.place_id = Reservation.find(params[:id])
  
     render :json => @reservation.to_json
-
-    if @reservtion.save
-      render :json => { :message => "OK"}
-    else
-      render :json => { :errors => @reservation.errors.full_messages }, :status => 400
-    end
     
   end
 

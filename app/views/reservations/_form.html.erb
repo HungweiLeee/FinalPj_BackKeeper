@@ -80,19 +80,42 @@
 
 <script>
 
-	
+	function unva(date){
+		dmy = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+		return [$.inArray(dmy, Udates) == -1 ];
+	}
 
 	$(function(){
 
+		Udates = [];
 
-	  $('#reservation_start_date').datepicker({
-	  	dateFormat: 'dd-mm-yy'
-	  });
+		$.ajax({
+			url: '/preload',
+			data: {'place_id': <%= @place.id%>},
+			dataType: 'json',
+			success: function(data) {
 
-	  $('#reservation_end_date').datepicker({
-	  	dateFormat: 'dd-mm-yy'
-	  });
+				$.each(data, function(arrID, arrValue){
+					for(var d = new Date(arrValue.start_date); d <= new Date(arrValue.end_date); d.setDate(d.getDate()+1)) {
+						Udates.push($.datepicker.formatDate('d-m-yy', d));
+					}
+				});
 
+				$('#reservation_start_date').datepicker({
+	  			dateFormat: 'dd-mm-yy',
+	  			minDate: 0,
+	  			maxDate: '3m',
+	  			
+	  		});
+
+	  		$('#reservation_end_date').datepicker({
+	  			dateFormat: 'dd-mm-yy',
+	  			minDate: 0,
+	  			maxDate: '3m',
+	  			
+	  		});
+			}
+		}); 
 	});
 
 </script>
