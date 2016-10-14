@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011082239) do
+ActiveRecord::Schema.define(version: 20161013114545) do
 
   create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "sender_id"
@@ -45,15 +45,17 @@ ActiveRecord::Schema.define(version: 20161011082239) do
     t.string   "shop_name"
     t.string   "address"
     t.integer  "user_id"
-    t.text     "summary",       limit: 65535
+    t.text     "summary",                limit: 65535
     t.integer  "big_bag"
     t.integer  "small_bag"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.float    "latitude",      limit: 24
-    t.float    "longitude",     limit: 24
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.float    "latitude",               limit: 24
+    t.float    "longitude",              limit: 24
     t.string   "phone"
     t.datetime "business_time"
+    t.integer  "currnet_big_capacity"
+    t.integer  "currnet_small_capacity"
     t.index ["user_id"], name: "index_places_on_user_id", using: :btree
   end
 
@@ -80,6 +82,7 @@ ActiveRecord::Schema.define(version: 20161011082239) do
     t.string   "status",                  default: "待寄放"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string   "phone"
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

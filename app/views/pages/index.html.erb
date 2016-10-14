@@ -1,0 +1,26 @@
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :shop_name %>
+  <%= f.search_field :shop_name %>
+
+  <%= f.submit %>
+<% end %>
+
+
+<div class="row">
+	<% @R_places.each do |place| %>
+		
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading preview">
+					<%= image_tag place.photos[0].image.url(:medium) if place.photos.length > 0 %>
+				</div>
+				<div class="panel-body">
+					<%= image_tag place.user.gravatar_url%>&nbsp;
+					<%= link_to place.shop_name, place %>
+				</div>
+			</div>
+		</div>
+
+	<% end %>
+</div>

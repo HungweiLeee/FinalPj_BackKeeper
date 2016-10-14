@@ -21,6 +21,18 @@ class PlacesController < ApplicationController
     @reviews = @place.reviews
     @hasReview = @reviews.find_by(:user_id => current_user.id) if current_user
     #@shop_reservations = @place.reservations
+
+    total_reservations = @place.reservations.where({status: ["待寄放", "待取"]})
+    
+    @R_place = @place.check_big_bag(total_reservations)
+    @r_place = @place.check_small_bag(total_reservations)
+
+    @place.currnet_big_capacity = @R_place
+    @place.currnet_small_capacity = @R_place
+
+    @place.save
+
+    
   end
 
   def new

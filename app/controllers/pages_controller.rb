@@ -1,11 +1,16 @@
 class PagesController < ApplicationController
   
+  def index
+  	@q = Place.ransack(params[:q])
+  	@R_places = @q.result
+  end
+
   def home
   	@places = Place.all.order("id DESC")
   end
 
   def show
-  	@palce = Place.find(params[:id])
+  	@place = Place.find(params[:id])
   end
 
   def search

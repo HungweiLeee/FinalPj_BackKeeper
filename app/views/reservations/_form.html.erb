@@ -13,25 +13,47 @@
 		 	<label>Out</label>
 			<%= r.text_field :end_date %>
 
+			
 		</div>
 
 	</div>
 
 	<div class="row bag">
 		<div class="col-md-6">
-			<label>Big</label>
-			<%= r.select "big_bags_for_thistime", options_for_select( 1..@place.big_bag )%>
+			<% if @R_place == @place.big_bag %>
+				Big is FULL
+			<% else%>
+				<label>Big</label>
+				<%= r.select "big_bags_for_thistime", options_for_select( 1..@place.big_bag )%>
+			<% end %>
 		</div>
 	 	
 	 	<div class="col-md-6">
-	 	<label>Small</label>
-			<%= r.select "small_bags_for_thistime", options_for_select( 1..@place.small_bag, class: "select-controll")%>	
+
+		 	<% if @r_place == @place.small_bag %>
+				Small is FULL
+			<% else %>
+			 	<label>Small</label>
+					<%= r.select "small_bags_for_thistime", options_for_select( 1..@place.small_bag, class: "select-controll")%>
+			<% end %>	
 		</div>
+	</div>
+
+  <hr>
+	<div class="row phone">
+		<div class="col-md-6">
+			<div class="phone">
+				<span class="fa fa-phone-square"></span>
+				<label> Your Phone </label>
+				<%= r.text_field :phone, placeholder: "Ex: 0910-223443", class: "form-controll"%>
+			</div>
+		</div>
+
 	</div>
 
 	<br>
 
-	<div class="row">
+	<div class="row time">
 		<div class="col-md-6">
 			<div class="time">
 				<span class="glyphicon glyphicon-time"></span>

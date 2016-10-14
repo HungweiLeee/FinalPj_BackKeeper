@@ -37,13 +37,21 @@
 								<i class="fa fa-suitcase fa-2x"></i>
 							</div>
 						</div>
+
+						<!-- Reservation.where( status: "待寄放") -->
+						
+
 						<div class="row text-center">
 							<div class="col-md-3">
 								Big: <%= @place.big_bag %>
+								<br>
+								Usage :<%= @R_place %>
 							</div>
 							
 							<div class="col-md-3">
 								Small: <%= @place.small_bag %>
+								<br>
+								Usage :<%= @r_place %>
 							</div>
 						</div>
 					</div>
@@ -52,7 +60,12 @@
 
 			<div class="col-md-5">
 				<!--Reservation-->
-				<%= render 'reservations/form'%>
+				<% if @place.small_bag == @r_place && @place.big_bag == @r_place%>
+					This place is FULL
+				<% else %>
+					<%= render 'reservations/form'%>
+				<% end%>
+
 			</div>
 		</div>
 

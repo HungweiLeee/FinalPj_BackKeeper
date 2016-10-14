@@ -19,4 +19,13 @@ class Reservation < ApplicationRecord
 
 	  "#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
 	 end
+
+	 def check_big_bag (total_reservations)
+	 	total = 0
+	 	
+    total_reservations.each do |b|
+      total = total + b.big_bags_for_thistime
+    end
+	 end
+
 end

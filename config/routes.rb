@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     post "/new" => "auth#new"
     #post "/places" => "places#show"
  
+    get "search" => "pages#get_nearby"
+    
     resources :places
     resources :reservations
     resources :pages
@@ -48,7 +50,6 @@ Rails.application.routes.draw do
   get '/your_trips' => 'reservations#your_trips'
 
   get '/search' => 'pages#search'
-  get '/search2' => 'pages#index'
 
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

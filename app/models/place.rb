@@ -13,11 +13,26 @@ class Place < ApplicationRecord
 
 	has_many :reviews
 
-	def check_bag_status
+	def average_rating
+
 	end
 
-	def average_rating
-		
-	end
+	def check_big_bag(total_reservations)
+	 	total = 0
+	 	
+    total_reservations.each do |b| 
+      total = total + b.big_bags_for_thistime
+    end
+    return total
+	 end
+
+	 def check_small_bag(total_reservations)
+	 	total = 0
+	 	
+    total_reservations.each do |b| 
+      total = total + b.small_bags_for_thistime
+    end
+    return total
+	 end
 	
 end
