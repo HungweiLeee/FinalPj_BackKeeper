@@ -28,6 +28,7 @@
 						<div class="col-md-6">
 							<h4><%= place.shop_name %></h4>
 							<p><% place.reservations.each do |r|%>
+								| <%= r.order_id if r.order_id != '11111111' %>
 								<%= link_to r.status, place_reservation_path(place, r) if r.status != '完成'%>
 								<%end %>
 							</p>

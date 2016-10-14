@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013114545) do
+ActiveRecord::Schema.define(version: 20161014094435) do
 
   create_table "conversations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer  "sender_id"
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20161013114545) do
     t.datetime "end_time"
     t.integer  "price"
     t.integer  "total"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.integer  "user_id"
     t.integer  "place_id"
     t.integer  "big_bags_for_thistime"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20161013114545) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "phone"
+    t.string   "order_id",                default: "11111111"
   end
 
   create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|

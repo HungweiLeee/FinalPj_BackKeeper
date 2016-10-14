@@ -23,6 +23,15 @@ class ReservationsController < ApplicationController
   def create
   	@reservation = current_user.reservations.create(reserv_params)
 
+    order = @reservation.created_at.to_s  #=> "2016-10-14 04:16:42 UTC"
+    n = order.size
+
+    pos = @reservation.phone.last(4)
+
+    id = order[5..n-14] + pos
+
+    @reservation.update(:order_id => id)
+
   	if @reservation
 			flash[:notice]="預約成功!"
 		end
@@ -57,6 +66,6 @@ class ReservationsController < ApplicationController
 	private
 
 	def reserv_params
-		params.require(:reservation).permit(:status, :start_time, :end_time, :price, :total, :place_id, :big_bags_for_thistime, :small_bags_for_thistime, :start_date, :end_date)
+		params.require(:reservation).permit(:phone, :status, :start_time, :end_time, :price, :total, :place_id, :big_bags_for_thistime, :small_bags_for_thistime, :start_date, :end_date)
 	end
 end

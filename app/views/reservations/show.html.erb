@@ -1,12 +1,12 @@
-<h2> 訂單明細 </h2>
+<h2> 訂單明細 </h2> <h4><%= @reservation.order_id%></h4>
 
 地點 <%= @reservation.place.shop_name %>
-<%= @reservation.start_time %>
-<%= @reservation.end_time %>
+<%= @reservation.start_time.to_s.first(10) %> -
+<%= @reservation.end_time.to_s.first(10) %>
 <%= @reservation.price %>
 <br>
 
-大件<%= @reservation.big_bags_for_thistime %>
+大件<%= @reservation.big_bags_for_thistime %> 
 小件<%= @reservation.small_bags_for_thistime %>
 
 <% seconds_diff = (@reservation.start_time - @reservation.end_time).to_i.abs %>
