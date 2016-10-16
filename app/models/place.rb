@@ -14,7 +14,7 @@ class Place < ApplicationRecord
 	has_many :reviews
 
 	def average_rating
-
+		reviews.count == 0 ? 0 : reviews.average(:star).round(2)
 	end
 
 	def check_big_bag(total_reservations)

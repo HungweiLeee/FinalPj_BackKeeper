@@ -1,0 +1,105 @@
+<div class="row">
+	
+		<div class="col-md-2">
+
+			<div class="place_photo">
+				<%= image_tag @place.photos[0].image.url(:medium)%>
+			</div>
+		
+			<i class="fa fa-clock-o" aria-hidden="true"></i>
+
+			<div class="shop_name">
+				<%= @place.shop_name %>
+				<br>
+				<%= @place.address %>
+				<br>
+				<%= link_to "修改店家資訊" %>
+			</div>	
+		</div>
+
+		<div class="col-md-10">
+			<div id="header">
+					<div class="logo pull-right clearfix">
+						<img src="http://placehold.it/150x80">
+					</div>			
+			</div>
+
+			<div class="section">
+				<div class="row ">
+					<div class="container">
+						<div class="search">
+							<i class="fa fa-search fa-lg" aria-hidden="true" ></i>
+							Search
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div id="body">
+				
+					<div class="col-md-4">
+						<img src="http://placehold.it/80x60">
+							<div class="section" style="padding-top:20px">
+								待寄放	
+								<div class="order_status">
+									
+								</div>
+							</div>		
+						<div class="order_list">
+							<div class="a">
+								<% @wait_to_put.each do |f|%>
+										<%= f.order_id %>
+								<% end %>
+							</div>
+							<div class="b">
+								B
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<img src="http://placehold.it/80x60">
+							<div class="section" style="padding-top:20px">
+								待取件	
+								<div class="order_status">
+									
+								</div>
+							</div>		
+						<div class="order_list">
+							<div class="a">
+								<% @wait_to_take.each do |f|%>
+										<%= f.order_id %>
+								<% end %>
+							</div>
+							<div class="b">
+								
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<img src="http://placehold.it/80x60">
+							<div class="section" style="padding-top:20px">
+								完成
+								<div class="order_status">
+									
+								</div>
+							</div>		
+						<div class="order_list">
+							<div class="a">
+								<% if @completed %>
+									<% @completed.each do |f|%>
+											<%= f.order_id %>
+									<% end %>
+								<% end %>
+							</div>
+							<div class="b">
+								
+							</div>
+						</div>
+					</div>
+	
+			</div>
+		</div>
+</div>

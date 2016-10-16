@@ -12,8 +12,12 @@ class ReservationsController < ApplicationController
   end
 
   def index
-    @reservations = current_user.reservations.all
-    
+    @place = Place.find(params[:place_id])
+    @reservations = @place.reservations
+
+    @wait_to_put = @reservations.where(status: "待寄放")
+    @wait_to_take = @reservations.where(status: "待取")
+    @compeleted = @reservations.where(status: "已完成")
     #@wait_for_take_reservations = @reservations
     #@compeleted_reservations = @reservations
 

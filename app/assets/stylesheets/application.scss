@@ -174,3 +174,59 @@ input[type="checkbox"]:checked:before {
   padding: 10px;
   
 }
+
+.place_photo img {
+  width: 100%;
+  height: auto;
+  padding-top: 82px;
+  padding-bottom: 50px;
+
+}
+.section {
+  float: right;
+  padding-top: 20px;
+    /* margin-left: 28px; */
+  margin-right: 150px;
+}
+
+.search {
+  width: 63%;
+  margin: auto;
+  margin-bottom: 20px;
+  font-size: 18px;
+
+  border: solid;
+  width: 183px;
+  padding: 3px;
+  margin-left: 358px;
+  border-radius: 10px;
+}
+
+.order_list {
+  border-style: solid;
+  border-width: 1px;
+  border-color: red;
+  border-radius: 8px;
+  margin-top: 13px;
+  height: 400px;
+}
+
+.order_list .a {
+  float: left;
+  margin-right: 70px;
+  padding: 5px;
+  padding-right: 68px;
+  /*border-right: solid;*/
+}
+
+.order_list .b {
+  padding: 5px;
+  /* padding-right: 57px; */
+  margin-left: 150px;
+  position: absolute;
+  
+}
+
+.container .search {
+  margin-top: 30px;
+}
