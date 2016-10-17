@@ -18,6 +18,21 @@
 @import "toastr";
 @import "font-awesome";
 
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /*border: solid 1px black;*/
+}
+
+
+.show-right{
+  padding: 0;
+}
+
+.logo{
+  overflow: hidden;
+}
 
 body {
 	background-color: #f8f8f8;
@@ -176,12 +191,14 @@ input[type="checkbox"]:checked:before {
 }
 
 .place_photo img {
-  width: 100%;
-  height: auto;
-  padding-top: 82px;
-  padding-bottom: 50px;
-
+  height: 80px;
+  width: 80px;
+  margin-top: 106px;
+  padding-bottom: 11px;
+  border-radius: 50%;
+  margin-left: 50px;
 }
+
 .section {
   float: right;
   padding-top: 20px;
@@ -209,14 +226,22 @@ input[type="checkbox"]:checked:before {
   border-radius: 8px;
   margin-top: 13px;
   height: 400px;
+  font-size: 20px;
 }
 
 .order_list .a {
   float: left;
-  margin-right: 70px;
+  margin-right: 40px;
   padding: 5px;
   padding-right: 68px;
   /*border-right: solid;*/
+
+}
+
+.order_list a {
+  margin-left: 70px;
+  /*border-right: solid;*/
+
 }
 
 .order_list .b {
@@ -229,4 +254,28 @@ input[type="checkbox"]:checked:before {
 
 .container .search {
   margin-top: 30px;
+  margin-left: 110px;
+}
+
+.col-md-2 {
+  background-color: #2277DB;
+  height: 780px;
+
+}
+
+.col-md-2 .bgc {
+  background-color: #fffff;
+}
+
+.desktop {
+  width: 100%;
+}
+
+.desktop img {
+  width: 105%;
+  margin-left: -3px;
+}
+
+#reservation_show {
+  padding-left: 151px;
 }

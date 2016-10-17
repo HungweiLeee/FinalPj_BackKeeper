@@ -79,7 +79,7 @@
 		<!-- Reviews, if @booked && !@hasReview, <%= @place.average_rating %>-->
 		<div class="row">
 			<div class="col-md-12">
-				<h3>Reviews </h3>
+				<h3>Reviews <%= @place.average_rating%> (<%= @reviews.count %>)</h3>
 				<div class="container">
 					<div>
 						<%= render 'reviews/form'%>

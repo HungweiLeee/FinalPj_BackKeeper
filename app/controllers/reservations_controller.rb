@@ -17,7 +17,9 @@ class ReservationsController < ApplicationController
 
     @wait_to_put = @reservations.where(status: "待寄放")
     @wait_to_take = @reservations.where(status: "待取")
-    @compeleted = @reservations.where(status: "已完成")
+    @compeleted = @reservations.where(status: "完成")
+
+    
     #@wait_for_take_reservations = @reservations
     #@compeleted_reservations = @reservations
 
@@ -52,7 +54,7 @@ class ReservationsController < ApplicationController
     @reservation = @place.reservations.find(params[:id])
     @reservation.update(reserv_params)
 
-    redirect_to places_path
+    redirect_to place_reservations_path
 
   end
 
