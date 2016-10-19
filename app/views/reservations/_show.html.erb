@@ -1,0 +1,20 @@
+
+	<%= form_for reservation, :url => place_reservation_path(@place.id, reservation) do |r| %>
+		
+		<div class="row date">
+			<div class="col-md-6">
+				<span class="fa fa-check-square"></span>
+					<%= r.select :status,[["待取","待取"],["完成","完成"]], :class => "form-control"%> 
+				<br>
+				<span class="fa fa-check-square"></span>
+					<%= r.time_select :start_time%>
+					<%= r.hidden_field :place_id, value: @place.id %>
+
+			</div>
+		</div>
+			
+			<div style="margin-top: 5px">
+
+				<%= r.submit %>
+			</div>
+	<% end %>

@@ -196,14 +196,14 @@ input[type="checkbox"]:checked:before {
   margin-top: 106px;
   padding-bottom: 11px;
   border-radius: 50%;
-  margin-left: 50px;
+  margin-left: 63px;
 }
 
 .section {
   float: right;
   padding-top: 20px;
     /* margin-left: 28px; */
-  margin-right: 150px;
+  /*margin-right: 150px; */
 }
 
 .search {
@@ -215,7 +215,7 @@ input[type="checkbox"]:checked:before {
   border: solid;
   width: 183px;
   padding: 3px;
-  margin-left: 358px;
+  /*margin-left: 358px;*/
   border-radius: 10px;
 }
 
@@ -233,13 +233,13 @@ input[type="checkbox"]:checked:before {
   float: left;
   margin-right: 40px;
   padding: 5px;
-  padding-right: 68px;
+  /*padding-right: 68px;*/
   /*border-right: solid;*/
 
 }
 
 .order_list a {
-  margin-left: 70px;
+  margin-left: 45px;
   /*border-right: solid;*/
 
 }
@@ -278,4 +278,18 @@ input[type="checkbox"]:checked:before {
 
 #reservation_show {
   padding-left: 151px;
+}
+
+.shop_name {
+  text-align: center;
+}
+
+.clock {
+  padding-right: 100px;
+}
+
+.location {
+  position: relative;
+  left: -85px;
+  top: 5px;
 }

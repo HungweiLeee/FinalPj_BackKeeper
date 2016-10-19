@@ -1,7 +1,7 @@
 class ApiV1::ReservationsController < ApiController
 
   before_action :authenticate_user_from_token!
-  before_action :find_place, :only => [:index, :show, :edit, :create]
+  before_action :find_place, :only => [:index, :show, :edit]
 
 	def index
     #@reservations = current_user.reservations
@@ -14,18 +14,29 @@ class ApiV1::ReservationsController < ApiController
   end
  
   def create
-    @reservation = Reservation.new( 
-                                    :place_id => params[:place_id],
+    @reservation = Reservation.create( 
+                                    # :place_id => params[:place_id],
                                     :start_time => params[:start_time],
                                     :end_time => params[:end_time],
                                     :big_bags_for_thistime => params[:big_bags_for_thistime],
-                                    :small_bags_for_thistime => params[:small_bags_for_thistime]                                  
+                                    :small_bags_for_thistime => params[:small_bags_for_thistime],
+                                    :phone => params[:phone]                                 
                                   )
     @reservation.user = current_user
-    @reservation.place = Place.find_by_shop_name(params[:place])
+    @reservation.place = Place.find(params[:place_id])
+    @reservation.save
+
+    order = @reservation.created_at.to_s  #=> "2016-10-14 04:16:42 UTC"
+    n = order.size
+
+    pos = @reservation.phone.last(4)
+
+    id = order[5..n-14] + pos
+
+    @reservation.update(:order_id => id)
+
     @reservation.save
     #@reservation.place_id = Reservation.find(params[:id])
- 
     render :json => @reservation.to_json
     
   end

@@ -1,55 +1,148 @@
-<div id="reservation_show">
-	
 
-<h2> 訂單明細 </h2> <h4><%= @reservation.order_id%></h4>
+<div class="row">
+	<div class="col-md-2">
 
-地點 <%= @reservation.place.shop_name %>
-<%= @reservation.start_time.to_s.first(10) %> -
-<%= @reservation.end_time.to_s.first(10) %>
-<%= @reservation.price %>
-<br>
+			<div class="place_photo">
+				<div class="place_photo_2">
+					<%= image_tag @place.photos[0].image.url(:medium)%>
+				</div>
+			</div>
 
-大件<%= @reservation.big_bags_for_thistime %> 
-小件<%= @reservation.small_bags_for_thistime %>
-
-<% seconds_diff = (@reservation.start_time - @reservation.end_time).to_i.abs %>
-<% hr = seconds_diff / 3600 %>
-<br>
-
-預估金額
-<%= (@reservation.big_bags_for_thistime*50+@reservation.small_bags_for_thistime*30)* (hr-2) %>
-
-<%= %>
-<br>
-狀態 <%= @reservation.status %>
-
-<br>
-預估 <%= seconds_diff / 3600 %>小時
-
-<br>
-
-<hr>
-
-<% if @place.user_id == current_user.id %>
-	<%= form_for([@place, @reservation]) do |r| %>
-		
-		<div class="row date">
-			<div class="col-md-6">
-				<span class="fa fa-check-square"></span>
-					<%= r.select :status,[["待取","待取"],["完成","完成"]], :class => "form-control"%> 
+			<div class="shop_name">
+				<%= @place.shop_name %>
 				<br>
-				<span class="fa fa-check-square"></span>
-					<%= r.time_select :start_time%>
+					<div id='stars_<%= @place.id %>'></div>
+				<br>
+
+				<div class="clock">
+					<i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+					營業時間
+				</div>
+
+				<%= image_tag "location.png", :class => "location" %>
+				<div class="desktop">
+					<%= @place.address %>	
+				</div>
+
+				<br>
+					<%= link_to "修改店家資訊" %>
+			</div>	
+		</div>
+
+		<div class="col-md-10 show-right">
+			<div id="header">
+				<div class="logo">
+					<div class="desktop">
+						<%= image_tag "desktop.png" %>
+					</div>
+				</div>			
+			</div>
+</div>
+
+
+
+
+
+
+<div class="row">
+	
+	<div class="col-md-4">
+		<h2 style="color: #FC5F43; padding-left: 40px;"> 訂單明細: <%= @reservation.order_id%></h2>
+
+		<div class="row" style="text-align: center;">
+
+
+			<div class="col-md-4">
+			<%= @reservation.user.nickname %>
+				姓名
+			</div>
+			<div class="col-md-4">
+				<%= @reservation.phone %>
+				電話
+			</div>
+			<div class="col-md-4">
+				<%= @reservation.big_bags_for_thistime %> 大
+				<%= @reservation.small_bags_for_thistime %> 小
+				寄物件數
 			</div>
 		</div>
-			
-			<div style="margin-top: 5px">
-				<%= r.submit %>
-			</div>
-	<% end %>
-<% end %>
 
-</div>
+		<div class="row" style="text-align: center;">
+			
+			<div class="col-md-4">
+				寄物時間
+			</div>
+			<div class="col-md-8" >
+				<%= @reservation.start_time.to_s.first(10) %>
+			</div>
+		</div>
+
+		<div class="row" style="text-align: center;">
+			
+			<div class="col-md-4">
+				取物時間
+			</div>
+			<div class="col-md-8" >
+				<%= @reservation.end_time.to_s.first(10) %>
+			</div>
+		</div>
+
+		<div class="row" style="text-align: center;">
+			
+			<div class="col-md-4">
+				預估金額
+			</div>
+			<div class="col-md-8">
+				<% seconds_diff = (@reservation.start_time - @reservation.end_time).to_i.abs %>
+				<% hr = seconds_diff / 3600 %>
+				<%= (@reservation.big_bags_for_thistime*50+@reservation.small_bags_for_thistime*30)* (hr-2) %>
+			</div>
+		</div>
+
+		<div class="row" style="text-align: center;">
+			
+			<div class="col-md-4">
+				現在狀態
+			</div>
+			<div class="col-md-8">
+				<%= @reservation.status %>
+			</div>
+		</div>
+
+		<div class="row" style="text-align: center;">
+			
+			<div class="col-md-4">
+				現在狀態
+			</div>
+			<div class="col-md-8">
+				<% if @place.user_id == current_user.id %>
+					<%= form_for([@place, @reservation]) do |r| %>
+		
+						<div class="row">
+							<div class="col-md-12">
+								<span class="fa fa-check-square" style="text-align: center;"></span>
+									<%= r.select :status,[["待取","待取"],["完成","完成"]], :class => "form-control"%>
+							</div>
+						</div>
+						<div class="div" style="margin-top: 20px;">
+							<%= r.submit "更新訂單"%>
+						</div>
+						
+			</div>
+					<% end %>
+				<% end %>
+		</div>
+
+		<%= link_to "上一頁", place_reservations_path(@place)%>
+<!--	
+<br>
+預估 <%= seconds_diff / 3600 %>小時
+-->
+
+
+	
+
+
 
 
   

@@ -1,21 +1,28 @@
 		
-		<div class="col-md-2">
+		<div class="col-md-2 form">
 
 			<div class="place_photo">
 				<div class="place_photo_2">
 					<%= image_tag @place.photos[0].image.url(:medium)%>
 				</div>
-				
 			</div>
-		
-			<i class="fa fa-clock-o" aria-hidden="true"></i>
 
 			<div class="shop_name">
 				<%= @place.shop_name %>
 				<br>
 					<div id='stars_<%= @place.id %>'></div>
 				<br>
-					<%= @place.address %>
+
+				<div class="clock">
+					<i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+					營業時間
+				</div>
+
+				<%= image_tag "location.png", :class => "location" %>
+				<div class="desktop">
+					<%= @place.address %>	
+				</div>
+
 				<br>
 					<%= link_to "修改店家資訊" %>
 			</div>	
@@ -23,24 +30,30 @@
 
 		<div class="col-md-10 show-right">
 			<div id="header">
-					<div class="logo">
-						<div class="desktop">
-							<%= image_tag "desktop.png" %>
-						</div>
-						
-					</div>			
+				<div class="logo">
+					<div class="desktop">
+						<%= image_tag "desktop.png" %>
+					</div>
+				</div>			
 			</div>
 
-			<div class="section">
-				<div class="row ">
-					<div class="container">
-						<div class="search">
-							<i class="fa fa-search fa-lg" aria-hidden="true" ></i>
-							<span style="color: gray">Search</span> 
-						</div>
+			<div class="section col-md-12">
+				<!-- <div class="row "> -->
+					<!-- <div class="container"> -->
+					<!-- <div class="col-md-12"> -->
+						<div class="col-md-1">
+							<div class="search">
+							
+								<i class="fa fa-search fa-lg" aria-hidden="true" ></i>
+								<span style="color: gray">Search</span> 
+							</div>
+						</div>		
+						<div class="col-md-11"></div>
+					<!-- </div>		 -->
+					<!-- </div> -->
 						
-					</div>
-				</div>
+					<!-- </div> -->
+				<!-- </div> -->
 			</div>
 
 			<div id="body">
@@ -54,15 +67,19 @@
 								</div>
 							</div>		
 						<div class="order_list">
-							<div class="a">
-								<% @wait_to_put.each do |f|%>
-									<%= f.order_id %>
-									<%= link_to "詳細資料", place_reservation_path(@place, f) %>
-								<% end %>
-						 	</div>
-						 
 							
+									<div class="a">
+										<% @wait_to_put.each do |f|%>
+											<%= f.order_id %>
+											<%= link_to "訂單資訊", 
+									 "#my-put-modal-#{f.id}", :class => "btn btn-info", "data-toggle" => "modal" %>
+
+											<br>
+										<% end %>
+
+								 	</div>
 						</div>
+							
 					</div>
 
 					<div class="col-md-4">
@@ -77,7 +94,10 @@
 							<div class="a">
 								<% @wait_to_take.each do |f|%>
 									<%= f.order_id %>
-									<%= link_to "詳細資料", place_reservation_path(@place, f) %>
+									<%= link_to "訂單明細", 
+									 "#my-take-modal-#{f.id}", :class => "btn btn-info", "data-toggle" => "modal" %>
+									<%#= link_to "訂單資訊", place_reservation_path(@place, f)%>
+									<br>
 								<% end %>
 						 	</div>
 						 
@@ -97,22 +117,184 @@
 							<div class="a">
 								<% @compeleted.each do |f|%>
 									<%= f.order_id %>
-									<%= link_to "詳細資料", place_reservation_path(@place, f) %>
+									
+									<%= link_to "訂單明細", 
+									 "#my-compeleted-modal-#{f.id}", :class => "btn btn-info", "data-toggle" => "modal" %>
+									 <br>
+
 								<% end %>
 						 	</div>
-							
 						</div>
 					</div>
-
-	
 			</div>
 		</div>
 
+		<% @wait_to_put.each do |f|%>
+			<div class="modal fade" id="my-put-modal-<%=f.id%>" tabindex="-1" 
+					 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+	    		<div class="modal-content">
+
+				  		<div class="modal-header">
+				    		<button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+					    	<h3 id="myModalLabel">
+					    		
+											<%= f.order_id %>
+											大件: <%= f.big_bags_for_thistime %>
+											小件: <%= f.small_bags_for_thistime %>
+											狀態: <%= f.status %>
+
+											<% @wait_to_put.each do |r| %>
+
+												<%= render :partial => "show", locals: { :reservation => r}%>
+												
+											<% end %>
+											
+					    	</h3>
+				  		</div>
+				  
+				  		<div class="modal-footer">
+				    		<button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+				  		</div>
+				  </div>
+	    	</div>
+			</div>
+		<% end %>
+
+		<% @wait_to_take.each do |f|%>
+			<div class="modal fade" id="my-take-modal-<%=f.id%>" tabindex="-1" 
+					 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+	    		<div class="modal-content">
+
+				  		<div class="modal-header">
+				    		<button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+					    	<h3 id="myModalLabel">
+					    		
+											<%= f.order_id %>
+											大件: <%= f.big_bags_for_thistime %>
+											小件: <%= f.small_bags_for_thistime %>
+											狀態: <%= f.status %>
+
+											<% @wait_to_take.each do |r| %>
+
+												<%= render :partial => "show", locals: { :reservation => r}%>
+												
+											<% end %>
+											
+					    	</h3>
+				  		</div>
+				  
+				  		<div class="modal-footer">
+				    		<button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+				  		</div>
+				  </div>
+	    	</div>
+			</div>
+		<% end %>
+
+		<% @compeleted.each do |f|%>
+			<div class="modal fade" id="my-compeleted-modal-<%=f.id%>" tabindex="-1" 
+					 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+	    		<div class="modal-content">
+
+				  		<div class="modal-header">
+				    		<button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+					    	<h3 id="myModalLabel">
+					    		
+									<div class="row">
+										<div class="container">訂單序號: <%= f.order_id %></div>	
+									</div>
+
+									<div class="row">
+										<div class="container">
+											<div class="col-sm-2" style="padding: 0;">使用者名稱: <%= f.user.nickname %></div>
+											<div class="col-sm-2" style="padding: 0;">聯絡方式: <%= f.phone %></div>
+											<div class="col-sm-2" style="padding: 0;">寄物件數
+												<div class="row">
+													<div class="container">
+														<div class="col-sm-1"><%= f.big_bags_for_thistime %>大</div>
+														<div class="col-sm-1"><%= f.small_bags_for_thistime %>小	</div>
+													</div>	
+												</div>
+										</div>	
+									</div>
+
+									<div class="div">
+										<div class="row">
+											<div class="container">
+												<div class="col-sm-2">
+													寄物時間:
+												</div>
+												<div class="col-sm-2">
+													<%= f.start_time.to_s.first(10)%>
+											</div>
+										</div>	
+									</div>
+
+									<div class="div">
+										<div class="row">
+											<div class="container">
+												<div class="col-sm-2">
+													取物時間:
+												</div>
+												<div class="col-sm-2">
+													<%= f.end_time.to_s.first(10)%>
+											</div>
+										</div>	
+									</div>
+
+									<div class="div">
+										<div class="row">
+											<div class="container">
+												<div class="col-sm-2">
+													預估金額:
+												</div>
+												<div class="col-sm-2">
+													<%= f.price %>
+											</div>
+										</div>	
+									</div>
+
+									<div class="div">
+										<div class="row">
+											<div class="container">
+												<div class="col-sm-2">
+													狀態:
+												</div>
+												<div class="col-sm-2">
+													<%= f.status %>
+											</div>
+										</div>	
+									</div>
+									<div class="row">
+										<div class="container">
+											<div class="col-md-4">
+												<textarea rows="5">備註</textarea>
+											</div>											
+										</div>
+									</div>
+									
+											
+											
+					    	</h3>
+				  		</div>
+				  
+				  		<div class="modal-footer">
+				    		<button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+				  		</div>
+				  </div>
+	    	</div>
+			</div>
+		<% end %>
 
 <script>
-			$('#stars_<%= @place.id%>').raty({
-				path: '/assets',
-				readOnly: true,
-				score: <%= @place.average_rating %>
-			});
-		</script>
+	$('#stars_<%= @place.id%>').raty({
+		path: '/assets',
+		readOnly: true,
+		score: <%= @place.average_rating %>
+	});
+
+	$()
+</script>

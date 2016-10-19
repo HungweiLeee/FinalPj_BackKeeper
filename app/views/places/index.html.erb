@@ -38,9 +38,9 @@
 						</div>
 						<div class="col-md-4 right">
 							
-							<%= link_to "Show", place_path(place), class: "btn btn-primary"%>
-							<%= link_to "Update", edit_place_path(place), class: "btn btn-primary"%>
-							<%= link_to "delete", place_path(place), :method => :delete, class: "btn btn-primary"%>
+							<%= link_to "顯示所有訂單", place_reservations_path(place), class: "btn btn-primary"%>
+							<%= link_to "更新", edit_place_path(place), class: "btn btn-primary"%>
+							<%= link_to "刪除", place_path(place), :method => :delete, class: "btn btn-primary"%>
 						</div>
 					</div>
 				<% end %>
@@ -48,3 +48,4 @@
 		</div>
 	</div>
 </div>
+

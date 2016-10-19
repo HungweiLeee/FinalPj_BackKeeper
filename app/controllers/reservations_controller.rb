@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
     @wait_to_take = @reservations.where(status: "待取")
     @compeleted = @reservations.where(status: "完成")
 
-    
+    #@reservation = @place.reservations.find(params[:id])
     #@wait_for_take_reservations = @reservations
     #@compeleted_reservations = @reservations
 
@@ -50,9 +50,14 @@ class ReservationsController < ApplicationController
   end
 
   def update
+
     @place = Place.find(params[:place_id])
     @reservation = @place.reservations.find(params[:id])
     @reservation.update(reserv_params)
+
+    if @reservation
+      flash[:notice]="更新成功!"
+    end
 
     redirect_to place_reservations_path
 

@@ -1,4 +1,4 @@
-json.place @place, :shop_name, :created_at, :address, :latitude, :longitude do
+json.place @place, :shop_name, :created_at, :address, :latitude, :longitude
 json.place do
-    json.photo place.photos
+     place.photos[0].image.url
 end
