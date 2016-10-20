@@ -17,4 +17,5 @@
 //= require toastr
 //= require jquery-ui/datepicker
 //= require cable
-//= require_tree .
+//= require_tree ./channels
+
