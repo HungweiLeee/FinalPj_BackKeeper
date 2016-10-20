@@ -1,4 +1,7 @@
 <ul class="notificator">
+	<a href="#" id="open_notification">
+    <%= render 'events/counter', counter: notifications.count %>
+  </a>
   <div id="notificationContainer">
     <div id="notificationTitle">Notifications Page</div>
     <div id="notificationsBody" class="notifications">
@@ -9,3 +12,28 @@
     <div id="notificationFooter"></div>
   </div>
 </ul>
+<script>
+	$(document).ready(function()
+	{
+	    // open notification center on click
+	    $("#open_notification").click(function()
+	    {
+	        $("#notificationContainer").fadeToggle(300);
+	        $("#notification_count").fadeOut("fast");
+	        return false;
+	    });
+	 
+	    // hide notification center on click
+	    $(document).click(function()
+	    {
+	        $("#notificationContainer").hide();
+	    });
+	 
+	 
+	    $("#notificationContainer").click(function()
+	    {
+	        return false;
+	    });
+	 
+	});
+</script>
