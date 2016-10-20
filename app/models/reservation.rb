@@ -1,10 +1,14 @@
 class Reservation < ApplicationRecord
 
+	after_create_commit { notify }
+
 	belongs_to :user
 
 	belongs_to :place
 
 	#belongs_to :reservation_status
+
+
 	
 	def time_diff(start_time, end_time)
 	  seconds_diff = (start_time - end_time).to_i.abs
@@ -27,5 +31,11 @@ class Reservation < ApplicationRecord
       total = total + b.big_bags_for_thistime
     end
 	 end
+
+	private
+ 
+  	def notify
+    	Notification.create(event: "New Notification")
+  	end
 
 end
