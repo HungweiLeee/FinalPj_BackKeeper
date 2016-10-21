@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => "/cable"
 
-  #root 'pages#home'
-  root 'notifications#index'
+  root 'pages#home'
+  #root 'notifications#index'
 
 	devise_for :users
 	
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     
   end
 
-  resources :notifications, only: [:destroy]
+  resources :notifications
 
   resources :users, only: [:show]
   resources :places
