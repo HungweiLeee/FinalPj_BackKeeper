@@ -299,6 +299,7 @@ ul.notificator {
   display: inline-block;
   float:right;
   margin: 0;
+  padding-right: 15px;
   li
   {
     position: relative;
@@ -321,4 +322,15 @@ ul.notificator {
   border-radius: 3px;
   padding: 1px 3px;
   font: 8px Verdana;
+}
+
+.col-sm-2.text-center {
+  background-color: #2277DB;
+  color: white;
+  background-clip: content-box;
+  box-shadow: inset 0 0 0 2px white;
+}
+
+.col-sm-2 {
+  
 }

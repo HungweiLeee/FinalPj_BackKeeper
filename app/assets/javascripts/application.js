@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require jquery-ui/datepicker
+//= require jquery.transit.min
 //= require cable
 //= require_tree ./channels
 

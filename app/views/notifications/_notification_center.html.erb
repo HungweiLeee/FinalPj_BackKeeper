@@ -3,7 +3,7 @@
     <%= render 'events/counter', counter: notifications.count %>
   </a>
   <div id="notificationContainer">
-    <div id="notificationTitle">Notifications Page</div>
+    <div id="notificationTitle">所有通知</div>
     <div id="notificationsBody" class="notifications">
       <ul id="notificationList">
         <%= render notifications %>
@@ -12,6 +12,7 @@
     <div id="notificationFooter"></div>
   </div>
 </ul>
+
 <script>
 	$(document).ready(function()
 	{

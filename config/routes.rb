@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     
   end
 
+  resources :notifications, only: [:destroy]
+
   resources :users, only: [:show]
   resources :places
 

@@ -35,7 +35,7 @@ class Reservation < ApplicationRecord
 	private
  
   	def notify
-    	Notification.create(event: "New Notification")
+    	Notification.create(event: "你有一筆新訂單")
   	end
 
 end

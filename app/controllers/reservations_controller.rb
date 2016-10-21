@@ -14,6 +14,7 @@ class ReservationsController < ApplicationController
   def index
     @place = Place.find(params[:place_id])
     @reservations = @place.reservations
+    @notifications = Notification.all.reverse
 
     @wait_to_put = @reservations.where(status: "待寄放")
     @wait_to_take = @reservations.where(status: "待取")

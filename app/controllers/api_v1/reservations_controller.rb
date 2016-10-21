@@ -36,8 +36,12 @@ class ApiV1::ReservationsController < ApiController
     @reservation.update(:order_id => id)
 
     @reservation.save
+
+    #flash[:notice]="預約成功!"
     #@reservation.place_id = Reservation.find(params[:id])
     render :json => @reservation.to_json
+
+
     
   end
 
