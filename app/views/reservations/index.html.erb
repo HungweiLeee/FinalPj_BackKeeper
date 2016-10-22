@@ -1,5 +1,6 @@
 		
 		<div class="col-md-2 form">
+			<%#= image_tag("logo83.svg") %>
 
 			<div class="place_photo">
 				<div class="place_photo_2 text-center" style = "padding-top: 150px; padding-bottom: 15px;">
@@ -11,11 +12,17 @@
 				<%= @place.shop_name %>
 				<br>
 					<div id='stars_<%= @place.id %>'></div>
+					<%= image_tag("star-on.png") %>
+					<%= image_tag("star-on.png") %>
+					<%= image_tag("star-on.png") %>
+					<%= image_tag("star-half.png") %>
+
+
 				<br>
 
-				<div class="clock">
+				<div class="clock" style="margin-top: 7px;">
 					<i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
-					營業時間
+					早上八點-晚上九點
 				</div>
 
 				<%= image_tag "location.png", :class => "location" %>
@@ -67,7 +74,7 @@
 				
 					<div class="col-md-4">
 						<%= image_tag "待寄放.png" %>
-							<div class="section" style="padding-top:20px">
+							<div class="section" style="padding-top:20px; font-size: 25px;">
 								待寄放	
 							<div class="order_status">
 									
@@ -99,7 +106,7 @@
 
 					<div class="col-md-4">
 						<%= image_tag "待取件.png" %>
-							<div class="section" style="padding-top:20px">
+							<div class="section" style="padding-top:20px; font-size: 25px;">
 								待取件
 								<div class="order_status">
 									
@@ -122,7 +129,7 @@
 
 					<div class="col-md-4">
 						<%= image_tag "已完成.png" %>
-							<div class="section" style="padding-top:20px">
+							<div class="section" style="padding-top:20px; font-size: 25px;">
 								已完成
 								<div class="order_status">
 									
@@ -219,7 +226,7 @@
 													寄物時間:
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.start_time.to_s.first(10)%>
+													<%= f.start_time.to_s.first(19)%>
 											</div>
 										</div>	
 									</div>
@@ -231,7 +238,7 @@
 													取物時間:
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.end_time.to_s.first(10)%>
+													<%= f.end_time.to_s.first(19)%>
 											</div>
 										</div>	
 									</div>
@@ -322,7 +329,7 @@
 													寄物時間:
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.start_time.to_s.first(10)%>
+													<%= f.start_time.to_s.first(19)%>
 											</div>
 										</div>	
 									</div>
@@ -334,18 +341,17 @@
 													取物時間:
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.end_time.to_s.first(10)%>
+													<%= f.end_time.to_s.first(19)%>
 											</div>
 										</div>	
 									</div>
 
 									<div class="div">
-										
 											<div class="container">
-
+											</div>
 											<div class="row">
-												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px; width:190px;">
-													金額:
+												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px; width:190px; margin-left: 15px;">
+													預估金額:
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
 													<%= f.price %>

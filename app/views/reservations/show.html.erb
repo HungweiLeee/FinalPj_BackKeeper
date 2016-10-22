@@ -119,14 +119,16 @@
 					<%= form_for([@place, @reservation]) do |r| %>
 		
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<span class="fa fa-check-square" style="text-align: center;"></span>
 									<%= r.select :status,[["待取","待取"],["完成","完成"]], :class => "form-control"%>
 							</div>
-						</div>
-						<div class="div" style="margin-top: 20px;">
+
+							<div class="col-md-6 style="margin-top: 20px;">
 							<%= r.submit "更新訂單"%>
 						</div>
+						</div>
+						
 						
 			</div>
 					<% end %>

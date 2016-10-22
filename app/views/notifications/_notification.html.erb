@@ -1,5 +1,5 @@
 <li>
   <%= notification.event %>
   	<span> <%= notification.created_at.strftime("%d %b. %Y") %></span>
-  <%= button_to "x", notification_path(notification), :method => :delete %>
+  <%= link_to "x", notification_path(notification), :method => :delete %>
 </li>

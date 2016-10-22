@@ -2,9 +2,9 @@
 	<%= form_for reservation, :url => place_reservation_path(@place.id, reservation) do |r| %>
 		
 		<div class="row date" style="margin-left: 90px; margin-left: -10px;">
-			<div class="col-md-6">
+			<div class="col-md-6 text-right" style="padding: 0px; bottom: -25px; bottom: -22px; left: 33px;">
 				<span class="fa fa-check-square"></span>
-					<%= r.select :status,[["待取","待取"],["完成","完成"]], :class => "form-control"%> 
+					<%= r.select :status,[["待取","待取"],["完成","完成"]], :class => "form-control", :style=> ""%> 
 				
 				<!--<span class="fa fa-check-square"></span>
 					<%= r.time_select :start_time%>-->
@@ -12,8 +12,8 @@
 			</div>
 
 			<div class="col-md-6">
-				<div style="margin-top: 5px; margin-left: 75px;">
-					<div><%= r.submit "更新訂單"%></div>
+				<div style="margin-top: 5px; margin-left: 75px; color: white">
+					<div><%= r.submit "更新訂單", :style=> "background-color: #FC5F43;     margin-top: 26px; height: 39px; line-height: 31px;"%></div>
 				</div>
 			</div>
 		</div>	
