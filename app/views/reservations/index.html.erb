@@ -149,7 +149,11 @@
 						</div>
 					</div>
 			</div>
+			
 		</div>
+		<%= audio_tag("Family-Mart.mp3", autoplay: false, controls: true, style: "width: 20px; float: right; margin-right: 10px;") %>
+		<%= audio_tag("countdown.mp3", autoplay: false, controls: true, style: "width: 20px; float: right; margin-right: 10px;") %>
+		
 
 		<% @wait_to_put.each do |f|%>
 			<div class="modal fade" id="my-put-modal-<%=f.id%>" tabindex="-1" 

@@ -41,6 +41,8 @@ class ReservationsController < ApplicationController
 
   	if @reservation
 			flash[:notice]="預約成功!"
+
+      UserMailer.notify_comment(current_user, order_id).deliver_later!
 		end
 
   	redirect_to places_path(@place)
@@ -59,6 +61,8 @@ class ReservationsController < ApplicationController
     if @reservation
       flash[:notice]="更新成功!"
     end
+
+    #UserMailer.notify_comment(@reservation).deliver_later!
 
     redirect_to place_reservations_path
 
