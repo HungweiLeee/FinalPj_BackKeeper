@@ -293,8 +293,8 @@ input[type="checkbox"]:checked:before {
 
 .location {
   position: relative;
-  left: -100px;
-  top: 20px;
+  left: -110px;
+  top: 21px;
 }
 
 
@@ -340,4 +340,10 @@ ul.notificator {
 
 .navbar-brand-2 {
   height: 40px;
+}
+
+.shop_name {
+  color: white;
+  font-variant: small-caps;
+  font-weight: 100;
 }
