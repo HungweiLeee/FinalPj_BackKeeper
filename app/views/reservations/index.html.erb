@@ -6,7 +6,7 @@
 				</div>
 			</div>
 
-			<div class="shop_name" style="color: white; font-variant: small-caps; font-weight: 100;">
+			<div class="shop_name" >
 				<%= @place.shop_name %>
 				<br>
 					<div id='stars_<%= @place.id %>'></div>
@@ -164,9 +164,11 @@
 					    	<h3 id="myModalLabel">
 					    		
 											<%= f.order_id %>
+											<br>
+											姓名: <%= f.user.nickname %>
+											<br>
 											大件: <%= f.big_bags_for_thistime %>
 											小件: <%= f.small_bags_for_thistime %>
-											狀態: <%= f.status %>
 
 											<% @wait_to_put.each do |r| %>
 
@@ -175,10 +177,6 @@
 											<% end %>
 											
 					    	</h3>
-				  		</div>
-				  
-				  		<div class="modal-footer">
-				    		<button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
 				  		</div>
 				  </div>
 	    	</div>
