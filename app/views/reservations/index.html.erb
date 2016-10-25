@@ -1,7 +1,5 @@
 		
 		<div class="col-md-2 form">
-			<%#= image_tag("logo83.svg") %>
-
 			<div class="place_photo">
 				<div class="place_photo_2 text-center" style = "padding-top: 150px; padding-bottom: 15px;">
 					<%= image_tag @place.photos[0].image.url(:medium)%>
@@ -252,11 +250,12 @@
 											<div class="container">
 
 											<div class="row">
+
 												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px; width:190px;">
-													預估金額:
+													預估金額: 
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.price %>
+													<%= f.price %> 230
 												</div>
 											</div>	
 									</div>
@@ -358,7 +357,7 @@
 													預估金額:
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.price %>
+													<%= f.price %> 230
 												</div>
 											</div>	
 									</div>

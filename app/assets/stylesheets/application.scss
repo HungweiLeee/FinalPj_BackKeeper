@@ -228,7 +228,7 @@ input[type="checkbox"]:checked:before {
   border-color: red;
   border-radius: 8px;
   margin-top: 13px;
-  height: 400px;
+  height: 500px;
   font-size: 20px;
 }
 
@@ -262,7 +262,7 @@ input[type="checkbox"]:checked:before {
 
 .col-md-2 {
   background-color: #2277DB;
-  height: 780px;
+  height: 880px;
 
 }
 
@@ -336,4 +336,8 @@ ul.notificator {
 
 .col-sm-2 {
   
+}
+
+.navbar-brand-2 {
+  height: 40px;
 }

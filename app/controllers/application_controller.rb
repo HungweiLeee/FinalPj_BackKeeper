@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
       devise_parameter_sanitizer.permit(:account_update, keys: [:nickname])
   end
+
+  def disable_nav
+  	@disable_nav = true
+	end
+	
 end

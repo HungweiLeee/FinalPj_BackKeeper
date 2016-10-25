@@ -3,6 +3,13 @@ class ReservationsController < ApplicationController
 	#before_action :authenticate_user!
 
   #for ajax datepicker
+
+  before_filter :disable_nav, only: [:index]
+
+  def landing_page
+    @disable_nav = true
+  end
+
   def preload
     place = Place.find(params[:place_id])
     today = Date.today
