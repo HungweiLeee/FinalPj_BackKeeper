@@ -29,8 +29,14 @@
 				</div>
 
 				<br>
-					<%= link_to "修改店家資訊" %>
+
 			</div>	
+					<div class="store info" style = "color: black;">
+						<%= link_to "修改店家資訊" %>
+					</div>
+
+					<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					修改地點資訊
 		</div>
 
 		<div class="col-md-10 show-right">
@@ -64,7 +70,7 @@
 					<!-- </div>		 -->
 					<!-- </div> -->
 						
-					<!-- </div> -->
+					<!-- 待寄放</div> -->
 				<!-- </div> -->
 			</div>
 
@@ -74,19 +80,11 @@
 						<%= image_tag "待寄放.png" %>
 							<div class="section" style="padding-top:20px; font-size: 25px;">
 								待寄放	
-							<div class="order_status">
-									
+							<div class="order_status">		
 					</div>
 			</div>
 
-					<%#= render :partial => "notifications/notification_center" %>
-					
-					
-
 						<div class="order_list">
-
-									
-									<%#= render "notification_center", notifications: @notifications %>
 							
 									<div class="a">
 										<% @wait_to_put.each do |f|%>
@@ -152,7 +150,6 @@
 		<%= audio_tag("Family-Mart.mp3", autoplay: false, controls: true, style: "width: 20px; float: right; margin-right: 10px;") %>
 		<%= audio_tag("countdown.mp3", autoplay: false, controls: true, style: "width: 20px; float: right; margin-right: 10px;") %>
 		
-
 		<% @wait_to_put.each do |f|%>
 			<div class="modal fade" id="my-put-modal-<%=f.id%>" tabindex="-1" 
 					 role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -163,25 +160,100 @@
 				    		<button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
 					    	<h3 id="myModalLabel">
 					    		
-											<%= f.order_id %>
-											<br>
-											姓名: <%= f.user.nickname %>
-											<br>
-											大件: <%= f.big_bags_for_thistime %>
-											小件: <%= f.small_bags_for_thistime %>
+									<div class="row">
+										<div class="container" style = "padding-bottom: 7px; color: #fc5f43;">訂單序號: <%= f.order_id %></div>	
+									</div>
 
-											<% @wait_to_put.each do |r| %>
+									<div class="row">
+										<div class="container">
+											<div class="col-sm-2" style="padding: 15px; height: 70px;background-color: #2277DB; color: white; width: 163px; border-right-style:solid"><%= f.user.nickname %>
+												<div class="text-right" style ="font-size: 14px; padding-top: 6px;">使用者名稱</div></div>
 
-												<%= render :partial => "show", locals: { :reservation => r}%>
-												
-											<% end %>
+											<div class="col-sm-2" style="padding: 15px; height: 70px; background-color: #2277DB; color: white; width: 160px; border-right-style:solid"> <%= f.phone %>
+											<div class="text-right" style ="font-size: 14px; padding-top: 6px;">聯絡方式</div>
 											
+											</div>
+
+											<div class="col-sm-2" style="padding: 15px; height: 70px; background-color: #2277DB; color: white; width: 160px;">
+												<div class="row">
+													<div class="container">
+														<div class="col-sm-1" style = "padding: 0px;""><%= f.big_bags_for_thistime %>大</div>
+														<div class="col-sm-1" style = "padding: 0px;""><%= f.small_bags_for_thistime %>小	</div>
+													</div>
+													<div class="text-right" style ="font-size: 14px; padding-top: 6px; padding-right: 6px;">寄物件數</div>
+														
+												</div>
+										</div>	
+									</div>
+
+									<div class="div">
+										<div class="row">
+											<div class="container">
+												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px;">
+													寄物時間:
+												</div>
+												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
+													<%= f.start_time.to_s.first(19)%>
+											</div>
+										</div>	
+									</div>
+
+									<div class="div">
+										<div class="row">
+											<div class="container">
+												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px;">
+													取物時間:
+												</div>
+												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
+													<%= f.end_time.to_s.first(19)%>
+											</div>
+										</div>	
+									</div>
+
+									<div class="div">
+										
+											<div class="container">
+
+											<div class="row">
+
+												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px; width:190px;">
+													預估金額: 
+												</div>
+												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
+													<%= f.price %> 80
+												</div>
+											</div>	
+									</div>
+
+									<div class="div">
+										<div class="row">
+											<div class="container">
+												<div class="col-sm-2 no text-center" style="height: 50px; line-height: 50px;  background-color: #fc5f43;">
+													目前狀態:
+												</div>
+												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
+													<%= f.status %>
+
+													<% @wait_to_put.each do |r| %>
+
+														<%= render :partial => "show", locals: { :reservation => r}%>
+												
+													<% end %>
+											</div>
+										</div>	
+									</div>
+												
 					    	</h3>
+				  		</div>
+				  
+				  		<div class="modal-footer">
+				    		<button aria-hidden="true" class="btn" data-dismiss="modal"></button>
 				  		</div>
 				  </div>
 	    	</div>
 			</div>
 		<% end %>
+	
 		
 		<% @wait_to_take.each do |f|%>
 			<div class="modal fade" id="my-take-modal-<%=f.id%>" tabindex="-1" 
@@ -253,7 +325,7 @@
 													預估金額: 
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.price %> 230
+													<%= f.price %> 80
 												</div>
 											</div>	
 									</div>
@@ -275,7 +347,7 @@
 											</div>
 										</div>	
 									</div>
-														
+												
 					    	</h3>
 				  		</div>
 				  
@@ -348,16 +420,17 @@
 									</div>
 
 									<div class="div">
-											<div class="container">
-											</div>
+										<div class="container">
+											
 											<div class="row">
-												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px; width:190px; margin-left: 15px;">
+												<div class="col-sm-2 text-center" style="height: 50px; line-height: 50px; width:190px">
 													預估金額:
 												</div>
 												<div class="col-sm-4 text-center" style="height: 50px; line-height: 50px;">
-													<%= f.price %> 230
+													<%= f.price %> 80
 												</div>
-											</div>	
+											</div>
+										</div>	
 									</div>
 
 									<div class="div">
@@ -374,7 +447,7 @@
 									<div class="row">
 										<div class="container">
 											<div class="col-md-4">
-												<textarea rows="5" style="width: 140%;">備註</textarea>
+												<textarea rows="5" style="width: 140%;">備註:</textarea>
 											</div>											
 										</div>
 									</div>					
@@ -382,7 +455,7 @@
 				  		</div>
 				  
 				  		<div class="modal-footer">
-				    		<button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+				    		<button aria-hidden="true" class="btn" data-dismiss="modal">儲存並關閉</button>
 				  		</div>
 				  </div>
 	    	</div>
